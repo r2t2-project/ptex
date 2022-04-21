@@ -703,6 +703,7 @@ void PtexReader::readFaceData(FilePos pos, FaceDataHeader fdh, Res res, int leve
 
     if (!newface) newface = errorData();
 
+    newface->setMemUsed(newMemUsed);
     AtomicStore(&face, newface);
     increaseMemUsed(newMemUsed);
 }

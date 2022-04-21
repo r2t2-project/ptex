@@ -365,13 +365,18 @@ public:
     class FaceData : public PtexFaceData {
     public:
         FaceData(Res resArg)
-            : _res(resArg) {}
+            : _res(resArg), _memUsed(0) {}
         virtual ~FaceData() {}
         virtual void release() { }
         virtual Ptex::Res res() { return _res; }
         virtual FaceData* reduce(PtexReader*, Res newres, PtexUtils::ReduceFn, size_t& newMemUsed) = 0;
+
+        void setMemUsed(const size_t memUsed) { _memUsed = memUsed; }
+        size_t memUsed() const { return _memUsed; }
+
     protected:
         Res _res;
+        size_t _memUsed;
     };
 
     class PackedFace : public FaceData {
