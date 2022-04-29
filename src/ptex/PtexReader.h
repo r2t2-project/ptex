@@ -47,9 +47,15 @@ OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGES.
 
 #include "PtexHashMap.h"
 
+namespace pbrt {
+class ExpandedPtex;
+}
+
 PTEX_NAMESPACE_BEGIN
 
 class PtexReader : public PtexTexture {
+    friend class pbrt::ExpandedPtex;
+
 public:
     PtexReader(bool premultiply, PtexInputHandler* inputHandler, PtexErrorHandler* errorHandler);
     virtual ~PtexReader();
